@@ -61,14 +61,24 @@ export class App extends React.Component<object, State> {
                    'instructions.',
         })
       })
-      .catch(({ data }) => {
-        this.setState({
-          isLoading: false,
-          isError: true,
-          displayMessage: true,
-          title: 'Error',
-          message: data.message,
-        })
+      .catch(({ response }) => {
+        if (response.data && response.data.message) {
+          this.setState({
+            isLoading: false,
+            isError: true,
+            displayMessage: true,
+            title: 'Error',
+            message: response.data.message,
+          })
+        } else {
+          this.setState({
+            isLoading: false,
+            isError: true,
+            displayMessage: true,
+            title: 'Error',
+            message: 'An unexpected error occurred. Please try again later.',
+          })
+        }
       })
   }
 
