@@ -76,3 +76,9 @@
 .github-addon {
   font-family: sans-serif;
 }
+
+@media only screen and (max-width: 470px) {
+  .panel {
+    width: calc(100% - 20px);
+  }
+}
