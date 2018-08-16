@@ -1,0 +1,78 @@
+.app {
+  height: 100%;
+}
+
+.overlay {
+  position: fixed;
+
+  display: none;
+
+  height: 100%;
+  width: 100%;
+
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 2;
+}
+
+.loader {
+  background-image: url('../resources/loader.svg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.panel {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+
+  height: 65%;
+  width: 450px;
+
+  max-width: 100%;
+  max-height: 100%;
+  overflow: auto;
+
+  background: #ecf0f1;
+  border-radius: 25px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
+}
+
+.panel-content {
+  height: 100%;
+  display: grid;
+}
+
+.inner {
+  text-align: center;
+
+  margin: auto;
+}
+
+.google-button {
+  height: 40px;
+  margin-top: 15px;
+}
+
+.invite-button {
+  height: 40px;
+  margin-top: 15px;
+}
+
+.github-input {
+  margin-top: 25px;
+  z-index: 0;
+}
+
+.github-addon {
+  font-family: sans-serif;
+}

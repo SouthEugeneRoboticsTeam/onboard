@@ -1,0 +1,14 @@
+{
+  "hosting": {
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      "package.json",
+      "package-lock.json",
+      "tsconfig.json",
+      "webpack.config.js",
+      "node_modules/**",
+      "src/**"
+    ]
+  }
+}
