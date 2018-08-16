@@ -58,7 +58,7 @@ export class App extends React.Component<object, State> {
           title: 'Success!',
           message: 'You\'ve been successfully invited to the GitHub ' +
                    'organization. Please check your email for further ' +
-                   'instructions.',
+                   'instructions or visit github.com/SouthEugeneRoboticsTeam.',
         })
       })
       .catch(({ response }) => {
