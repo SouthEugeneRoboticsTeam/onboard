@@ -20,14 +20,24 @@ const inviteUser = (githubAccount) => {
   }
 
   return new Promise((resolve, reject) => {
-    request.put(
-      `${GITHUB_BASE}/orgs/${GITHUB_ORG}/memberships/${githubAccount}`,
+    request.get(
+      `${GITHUB_BASE}/orgs/${GITHUB_ORG}/members/${githubAccount}`,
       { headers, json: true },
       (err, response, body) => {
-        if (err) {
-          reject(err)
+        if (response.statusCode !== 404) {
+          reject('already member')
         } else {
-          resolve(body)
+          request.put(
+            `${GITHUB_BASE}/orgs/${GITHUB_ORG}/memberships/${githubAccount}`,
+            { headers, json: true },
+            (err, response, body) => {
+              if (err) {
+                reject(err)
+              } else {
+                resolve(body)
+              }
+            }
+          )
         }
       }
     )
@@ -44,8 +54,6 @@ app.post('/invite/:github', (req, res) => {
   const { email, accessToken } = req.body
 
   const headers = { 'Authorization': `Bearer ${accessToken}` }
-
-  console.log(email)
 
   request.get(USER_INFO, { headers, json: true }, (err, response, body) => {
     if (err || !body) {
@@ -65,11 +73,18 @@ app.post('/invite/:github', (req, res) => {
           console.error(`Error inviting ${github}:`)
           console.error(err)
 
-          res.json({
-            success: false,
-            message: 'An internal server error occurred while inviting you to' +
-                     'the GitHub organization. Please try again.'
-          })
+          if (err === 'already member') {
+            res.status(400).json({
+              success: false,
+              message: 'You are already a member of the GitHub organization.'
+            })
+          } else {
+            res.status(500).json({
+              success: false,
+              message: 'An internal server error occurred while inviting you to' +
+                       'the GitHub organization. Please try again.'
+            })
+          }
         })
       } else {
         console.log(`User with email ${body.email} failed to login (not 4j)`)
