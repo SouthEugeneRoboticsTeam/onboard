@@ -1,0 +1,20 @@
+{
+  "name": "sert-invite",
+  "version": "1.0.0",
+  "description": "",
+  "main": "backend/index.js",
+  "scripts": {
+    "start": "cd backend && npm install && npm start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SouthEugeneRoboticsTeam/github-invite.git"
+  },
+  "author": "Andrew Dassonville <dassonville.andrew@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SouthEugeneRoboticsTeam/github-invite/issues"
+  },
+  "homepage": "https://github.com/SouthEugeneRoboticsTeam/github-invite#readme"
+}
