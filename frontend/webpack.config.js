@@ -1,6 +1,9 @@
 const path = require('path')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
+const webpack = require('webpack')
+
+const config = require('../config')
 
 module.exports = {
   entry: './src/index.tsx',
@@ -35,6 +38,11 @@ module.exports = {
   plugins: [
     new CopyPlugin([
       { from: './public/index.html' }
-    ])
-  ]
+    ]),
+    new webpack.DefinePlugin({
+      'BACKEND': JSON.stringify(config.backend),
+      'ORGANIZATION': JSON.stringify(config.organization),
+      'DOMAIN': JSON.stringify(config.domain),
+    }),
+  ],
 }

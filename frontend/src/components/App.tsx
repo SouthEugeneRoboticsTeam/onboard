@@ -6,7 +6,9 @@ import { signInWithGoogle } from '../firebase/auth'
 
 import './App.css'
 
-const BACKEND = 'https://sert-github-invite.herokuapp.com'
+declare var BACKEND: string
+declare var DOMAIN: string
+declare var ORGANIZATION: string
 
 const initialState = {
   isAuthenticated: false,
@@ -26,7 +28,7 @@ export class App extends React.Component<object, State> {
   async authenticate() {
     const { user, credential } = await signInWithGoogle()
 
-    if (user.email.endsWith('@4j.lane.edu')) {
+    if (user.email.endsWith(`@${DOMAIN}`)) {
       this.setState({
         isAuthenticated: true,
         user: {
@@ -41,7 +43,7 @@ export class App extends React.Component<object, State> {
         isError: true,
         displayMessage: true,
         title: 'Error',
-        message: 'Please login with a 4j.lane.edu account.',
+        message: `Please login with an account from ${DOMAIN}.`,
       })
     }
   }
@@ -58,7 +60,7 @@ export class App extends React.Component<object, State> {
           title: 'Success!',
           message: 'You\'ve been successfully invited to the GitHub ' +
                    'organization. Please check your email for further ' +
-                   'instructions or visit github.com/SouthEugeneRoboticsTeam.',
+                   `instructions or visit github.com/${ORGANIZATION}.`,
         })
       })
       .catch(({ response }) => {
@@ -127,7 +129,7 @@ export class App extends React.Component<object, State> {
       return (
         <div className="inner">
           <h1>Authentication</h1>
-          <h3>Sign in with your 4j account.</h3>
+          <h3>Sign in with {DOMAIN}.</h3>
           <Button
             className="btn-social btn-google google-button"
             onClick={this.authenticate.bind(this)}>
