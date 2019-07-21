@@ -1,11 +1,11 @@
 {
-  "name": "frontend",
+  "name": "onboard-frontend",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "build": "webpack --output-public-path=dist/",
-    "dev": "webpack-dev-server --hot -w --output-public-path=dist/",
+    "dev": "webpack-dev-server --hot -w",
     "test": "echo \"Error: no test specified\" && exit 1",
     "pretty": "prettier --no-semi --single-quote --write \"src/**\""
   },

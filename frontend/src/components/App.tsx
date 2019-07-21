@@ -51,7 +51,9 @@ export class App extends React.Component<object, State> {
   submitForm() {
     this.setState({ isLoading: true })
 
-    axios.post(`${BACKEND}/invite/${this.state.github}`, this.state.user)
+    const data = { ...this.state.user, username: this.state.github }
+
+    axios.post(`${BACKEND}/inviteGitHub`, data)
       .then(({ data }) => {
         this.setState({
           isLoading: false,
